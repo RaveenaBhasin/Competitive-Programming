@@ -1,2 +1,2 @@
 # Competitive-Programming
-Solutions to problems on various competitive programming sites.
+Solutions for Competitive Programming questions from Codeforces!!
