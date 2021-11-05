@@ -1,5 +1,6 @@
 class Solution {
 public:
+    //Boyer Moore Voting Algorithm
     vector<int> majorityElement(vector<int>& nums) {  
         vector<int>v;
         int num1 = -1, num2 = -2, count1 = 0, count2 = 0;
@@ -11,10 +12,12 @@ public:
                 count2++;
             }
             else if(count1 == 0){
+                //Reset the values
                 num1 = ele;
                 count1 = 1;
             }
             else if(count2 == 0){
+                //Reset the values
                 num2 = ele;
                 count2 = 1;
             }
@@ -23,6 +26,7 @@ public:
                 count2--;
             }
         }
+        //Processing the result
         count1 = 0, count2 = 0;
         for(auto ele:nums){
             if(ele == num1){
@@ -32,6 +36,7 @@ public:
                 count2++;
             }
         }
+        //Condition Checks
         if(count1>nums.size()/3){
             v.push_back(num1);
         }
