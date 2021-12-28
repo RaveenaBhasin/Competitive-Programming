@@ -18,7 +18,7 @@ public:
         } 
         //convert binary to decimal
         int res = 0;
-        for(int i=v.size()-1; i>-1; i--){
+        for(int i=v.size()-1; i>=0; i--){
             res = res * 2 + v[i];
         }
         return res;
