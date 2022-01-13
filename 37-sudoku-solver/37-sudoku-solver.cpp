@@ -40,7 +40,7 @@ public:
             return true;
         }
         int nextRowPos, nextColPos;
-        if(currentCol == 9){
+        if(currentCol == 8){
             nextRowPos = currentRow + 1;
             nextColPos = 0;
         }
