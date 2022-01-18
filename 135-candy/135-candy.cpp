@@ -12,12 +12,14 @@ public:
             if(arr[i+1] < arr[i] && ans[i+1] >= ans[i]){
                 ans[i] = ans[i+1] + 1;
             }
-            // else if(arr[i+1] == arr[i] && ans[i+1] > ans[i]){
-            //     ans[i] = ans[i+1] + 1;
-            // }
             sum += ans[i];
         }
+        // for(auto it: ans){
+        //     cout<<it<<" ";
+        // }
+        // cout<<"\n";
         sum += ans[n-1];
+        
         return sum;
     }
     int candy(vector<int>& ratings) {
