@@ -1,28 +1,28 @@
 class Solution {
 public:
     int maxAreaOfIsland(vector<vector<int>>& grid) {
-        int m = grid.size();
-        int n = grid[0].size();
-        int ans = 0;
-        for(int currRow = 0; currRow < m; currRow++){
-            for(int currCol = 0; currCol < n; currCol++){
-                if(grid[currRow][currCol] == 1){
-                    ans = max(ans, sinkIsland(grid, currRow, currCol, m, n));
+        int m = grid.size(), n = grid[0].size(), mx = 0;
+        for (int r = 0; r < m; r++) {
+            for (int c = 0; c < n; c++) {
+                if (grid[r][c] == 1) {
+                    mx = max(mx, area(grid, r, c, m, n));
                 }
             }
         }
-        return ans;
+        return mx;
     }
     
-    int sinkIsland(vector<vector<int>>&grid, int currRow, int currCol, int m, int n){
-        if(currRow < 0 || currRow >= m || currCol < 0 || currCol >= n || grid[currRow][currCol] == 0){
-            return 0;
+    int area(vector<vector<int>>& grid, int r, int c, int m, int n) {
+        int x[] = {0, 0, 1, -1};
+        int y[] = {1, -1, 0, 0};
+        int a = 0;
+        grid[r][c] = 0;
+        for (int i = 0; i < 4; i++) {
+            if (r + x[i] >=0 && r + x[i] < m && c + y[i] >=0 && c + y[i] < n && grid[r + x[i]][c + y[i]] == 1) {
+                a += area(grid, r + x[i], c + y[i], m, n); 
+            }
         }
-        grid[currRow][currCol] = 0;
-        int a = sinkIsland(grid, currRow - 1, currCol, m, n);
-        int b = sinkIsland(grid, currRow + 1, currCol, m, n);
-        int c = sinkIsland(grid, currRow, currCol - 1, m, n);
-        int d = sinkIsland(grid, currRow, currCol + 1, m, n);
-        return 1+a+b+c+d;
+        return a + 1;
     }
+
 };
