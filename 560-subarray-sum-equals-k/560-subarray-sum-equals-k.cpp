@@ -8,7 +8,7 @@ public:
             if(sum == k){
                 count++;
             }
-            if(mp.find(sum-k)!=mp.end()){
+            if(mp.find(sum-k) != mp.end()){
                 count += mp[sum-k];
             }
             mp[sum]++;
