@@ -1,28 +1,25 @@
 class Solution {
 public:
-    void totalWays(vector<int>&candidates, int currentIndex, int target, vector<int>&currentAns, vector<vector<int>>&powerSet){
+    void totalWays(vector<int>&candidates, int currIndex, int target, vector<int>&currAns, vector<vector<int>>&powerSet){
         if(target == 0){
-            powerSet.push_back(currentAns);
+            powerSet.push_back(currAns);
             return;
         }
-        if(currentIndex >= candidates.size()){
+        if(currIndex >= candidates.size()){
             return;
         }
-        int currentVal = candidates[currentIndex];
-        if(target >= currentVal){
-            //Considering the element by appending currentVal in currentAns array
-            currentAns.push_back(currentVal);
-            totalWays(candidates, currentIndex, target - currentVal, currentAns, powerSet);
-            //Not considering
-            currentAns.pop_back();
+        int currVal = candidates[currIndex];
+        if(target >= currVal){
+            currAns.push_back(currVal);
+            totalWays(candidates, currIndex, target - currVal, currAns, powerSet);
+            currAns.pop_back();
         }
-        //Backtracking
-        totalWays(candidates, currentIndex + 1, target, currentAns, powerSet);
+        totalWays(candidates, currIndex + 1, target, currAns, powerSet);
     }
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
         vector<vector<int>>powerSet;
-        vector<int>possibleSet;
-        totalWays(candidates, 0, target, possibleSet, powerSet);
+        vector<int>aux;
+        totalWays(candidates, 0, target, aux, powerSet);
         return powerSet;
     }
 };
