@@ -5,18 +5,16 @@ public:
         if(n == 0){
             return 0;
         }
-        vector<int>maxVal(n), minVal(n);
-        maxVal[0] = nums[0];
-        minVal[0] = nums[0];
+        int currMax = nums[0], currMin = nums[0];
+        int ans = currMax;
         for(int i = 1; i < n; i++){
-            maxVal[i] = max(maxVal[i-1]*nums[i], max(minVal[i-1]*nums[i], nums[i]));
-            minVal[i] = min(maxVal[i-1]*nums[i], min(minVal[i-1]*nums[i], nums[i]));
-        }
-        int ans = INT_MIN;
-        for(auto it : maxVal){
-            ans = max(ans, it);
+            int temp = currMax;
+            currMax = max(temp*nums[i], max(currMin*nums[i], nums[i]));
+            currMin = min(temp*nums[i], min(currMin*nums[i], nums[i]));
+            ans = max(ans, currMax);
         }
         return ans;
-        
     }
 };
+
+// T.C : O(n)  S.C : O(1)
