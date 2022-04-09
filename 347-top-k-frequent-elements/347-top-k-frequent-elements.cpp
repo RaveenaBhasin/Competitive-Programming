@@ -7,7 +7,7 @@ public:
         }
         priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>>pq;
         for(auto &it : mp){
-            cout<<it.first<<" "<<it.second<<endl;
+            //cout<<it.first<<" "<<it.second<<endl;
             pq.push({it.second, it.first});
             if(pq.size() > k){
                 pq.pop();
