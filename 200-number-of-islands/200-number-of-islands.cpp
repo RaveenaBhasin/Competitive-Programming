@@ -1,35 +1,27 @@
 class Solution {
 public:
+    void countIslands(vector<vector<char>>&grid, int currRow, int currCol, int m, int n){
+        if(currRow < 0 || currRow >= m || currCol < 0 || currCol >= n || grid[currRow][currCol] == '0'){
+            return;
+        }
+        grid[currRow][currCol] = '0';
+        countIslands(grid, currRow-1, currCol, m, n);
+        countIslands(grid, currRow+1, currCol, m, n);
+        countIslands(grid, currRow, currCol+1, m, n);
+        countIslands(grid, currRow, currCol-1, m, n);
+    }
     int numIslands(vector<vector<char>>& grid) {
         int m = grid.size();
         int n = grid[0].size();
-        int answer = 0;
-        for(int currentRow = 0; currentRow < m; currentRow++){
-            for(int currentCol = 0; currentCol < n; currentCol++){
-                if(grid[currentRow][currentCol] == '1'){
-                    answer += 1;
-                    sinkIsland(grid, currentRow, currentCol, m, n);
+        int count = 0;
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                if(grid[i][j] == '1'){
+                    count++;
+                    countIslands(grid, i, j, m, n);
                 }
             }
         }
-        return answer;
-    }
-    
-    void sinkIsland(vector<vector<char>>&grid, int currentRow, int currentCol, int m, int n){
-        if(currentRow < 0 || currentRow >= m || currentCol < 0 || currentCol >= n || grid[currentRow][currentCol] == '0'){
-            return;
-        }
-        //Marking this as visited
-        grid[currentRow][currentCol] = '0';
-        //up 
-        sinkIsland(grid, currentRow - 1, currentCol, m, n);
-        //down
-        sinkIsland(grid, currentRow + 1, currentCol, m, n);
-        //left
-        sinkIsland(grid, currentRow, currentCol - 1, m, n);
-        //right
-        sinkIsland(grid, currentRow, currentCol + 1, m, n);
-        return;
-        
+        return count;
     }
 };
