@@ -25,9 +25,6 @@ public:
         for(int i = 1; i < dist.size(); i++){
             ans = max(ans, dist[i]);
         }
-        if(ans == 1e9){
-            return -1;
-        }
-        return ans;
+        return ans == 1e9 ? -1 : ans;
     }
 };
