@@ -2,6 +2,9 @@ class Solution {
 public:
     int dp[501][501];
     int solve(string &a, string &b, int n, int m) {
+        if(n == 0 && m == 0){
+            return 0;
+        }
         if(dp[n][m] != -1){
             return dp[n][m];
         }
