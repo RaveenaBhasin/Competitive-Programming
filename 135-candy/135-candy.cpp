@@ -14,10 +14,6 @@ public:
             }
             sum += ans[i];
         }
-        // for(auto it: ans){
-        //     cout<<it<<" ";
-        // }
-        // cout<<"\n";
         sum += ans[n-1];
         
         return sum;
